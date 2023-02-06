@@ -1,10 +1,7 @@
 package me.coolperson.customitems;
 
-import me.coolperson.customitems.*;
-import org.bukkit.Material;
-import org.bukkit.command.CommandSender;
+import me.coolperson.customitems.items.*;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
@@ -21,6 +18,7 @@ public final class CustomItems extends JavaPlugin implements Listener {
         instance = this;
         Bukkit.getPluginManager().registerEvents(this, this);
         this.getCommand("staff").setExecutor(new command());
+        this.getServer().getPluginManager().registerEvents(new lightningStaff(),this);
     }
 
     @EventHandler
@@ -32,7 +30,6 @@ public final class CustomItems extends JavaPlugin implements Listener {
         } else {
             event.getPlayer().sendMessage(Component.text("Welcome " + event.getPlayer().getName() + "!"));
         }
-
 
     }
     public static CustomItems getInstance() {
