@@ -1,8 +1,8 @@
 package me.coolperson.customitems;
 
 import me.coolperson.customitems.*;
-import com.destroystokyo.paper.event.block.AnvilDamagedEvent;
 import org.bukkit.Material;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -15,9 +15,12 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public final class CustomItems extends JavaPlugin implements Listener {
 
+    private static CustomItems instance;
     @Override
     public void onEnable() {
+        instance = this;
         Bukkit.getPluginManager().registerEvents(this, this);
+        this.getCommand("staff").setExecutor(new command());
     }
 
     @EventHandler
@@ -25,15 +28,15 @@ public final class CustomItems extends JavaPlugin implements Listener {
         Player player = event.getPlayer();
 
         if (event.getPlayer().hasPlayedBefore()) {
-            event.getPlayer().sendMessage(Component.text("Welcome back" + event.getPlayer().getName() + "!"));
+            event.getPlayer().sendMessage(Component.text("Welcome back " + event.getPlayer().getName() + "!"));
         } else {
-            event.getPlayer().sendMessage(Component.text("Welcome" + event.getPlayer().getName() + "!"));
+            event.getPlayer().sendMessage(Component.text("Welcome " + event.getPlayer().getName() + "!"));
         }
-        if (getName() == "TheNewEpicGamer"){
-            player.getInventory().addItem();
-        }
+
 
     }
-
+    public static CustomItems getInstance() {
+        return instance;
+    }
 
 }

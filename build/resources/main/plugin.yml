@@ -1,5 +1,5 @@
 name: CustomItems
-version: '${version}'
+version: '1.0-SNAPSHOT'
 main: me.coolperson.customitems.CustomItems
 api-version: 1.19
 description: A project that I can hopefully use in the future.
