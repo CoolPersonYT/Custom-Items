@@ -1,7 +1,6 @@
 package me.coolperson.customitems.items;
 
 import me.coolperson.customitems.CustomItems;
-import net.md_5.bungee.api.chat.hover.content.ItemSerializer;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
@@ -36,9 +35,10 @@ public class lightningStaff implements Listener {
     public void onRightClick(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         ItemStack item = getLightningStaff();
-        NamespacedKey key = new NamespacedKey(CustomItems.getInstance(), "LightningStaff");
+        PersistentDataContainer container = item.getItemMeta().getPersistentDataContainer();
         if (event.getAction() == Action.RIGHT_CLICK_AIR) {
-            if (player.getItemOnCursor() == item) {
+            NamespacedKey key = new NamespacedKey(CustomItems.getInstance(), "LightningStaff");
+            if (container.has(key)) {
                 player.getWorld().strikeLightning(player.getTargetBlock(null, 15).getLocation());
             }
         }
